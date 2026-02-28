@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded', () => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('show');
-                
+
                 // Animate progress bars if they exist within the target
                 const progressBars = entry.target.querySelectorAll('.skill-progress');
                 progressBars.forEach(bar => {
@@ -123,24 +123,25 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Contact form submission (Prevent default for display)
+    // Contact form submission (Submit to hidden iframe)
     const contactForm = document.getElementById('contactForm');
     if (contactForm) {
-        contactForm.addEventListener('submit', (e) => {
-            e.preventDefault();
+        contactForm.addEventListener('submit', () => {
             const btn = contactForm.querySelector('button[type="submit"]');
             const originalText = btn.innerHTML;
-            
-            btn.innerHTML = 'Sending... <i data-lucide="loader" class="icon-sm animate-spin"></i>';
-            lucide.createIcons();
-            
-            // Simulate sending
+
+            setTimeout(() => {
+                btn.innerHTML = 'Sending... <i data-lucide="loader" class="icon-sm animate-spin"></i>';
+                lucide.createIcons();
+            }, 10);
+
+            // Show success state after a delay
             setTimeout(() => {
                 btn.innerHTML = 'Message Sent! <i data-lucide="check" class="icon-sm"></i>';
                 btn.style.background = 'var(--accent-4)'; // Green color
                 lucide.createIcons();
                 contactForm.reset();
-                
+
                 setTimeout(() => {
                     btn.innerHTML = originalText;
                     btn.style.background = '';
@@ -159,10 +160,10 @@ document.addEventListener('DOMContentLoaded', () => {
     let typingSpeed = 100;
 
     function typeEffect() {
-        if(!typeTextElement) return;
+        if (!typeTextElement) return;
 
         const currentText = textsToType[textIndex];
-        
+
         if (isDeleting) {
             typeTextElement.textContent = currentText.substring(0, charIndex - 1);
             charIndex--;
