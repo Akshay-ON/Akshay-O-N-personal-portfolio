@@ -322,18 +322,30 @@
                         </div>
                     </div>
 
-                    <form class="contact-form" id="contactForm">
+                    <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
+                    <form class="contact-form" id="contactForm"
+                        action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSeOWp_Lhw3j5SblI5PAspSopkkIVUSEcdHYPl0tNPIvw-r8sA/formResponse"
+                        method="POST" target="hidden_iframe">
+
+                        <!-- Hidden fields for Google Form -->
+                        <input type="hidden" name="fvv" value="1">
+                        <input type="hidden" name="partialResponse" value="[null,null,&quot;7477366597136636268&quot;]">
+                        <input type="hidden" name="pageHistory" value="0">
+                        <input type="hidden" name="fbzx" value="7477366597136636268">
+                        <input type="hidden" name="submissionTimestamp" value="-1">
+
                         <div class="form-group">
                             <label for="name">Name</label>
-                            <input type="text" id="name" required placeholder="John Doe">
+                            <input type="text" id="name" name="entry.424118000" required placeholder="John Doe">
                         </div>
                         <div class="form-group">
                             <label for="email">Email</label>
-                            <input type="email" id="email" required placeholder="john@example.com">
+                            <input type="email" id="email" name="entry.1332149861" required
+                                placeholder="john@example.com">
                         </div>
                         <div class="form-group">
                             <label for="message">Message</label>
-                            <textarea id="message" rows="4" required
+                            <textarea id="message" name="entry.56172161" rows="4" required
                                 placeholder="Tell me about your project..."></textarea>
                         </div>
                         <button type="submit" class="btn btn-primary w-full">Send Message <i data-lucide="send"
