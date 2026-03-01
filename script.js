@@ -188,4 +188,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Start typing effect
     setTimeout(typeEffect, 1000);
+
+    // Media Video Hover Effect
+    const mediaCards = document.querySelectorAll('.hover-media-card');
+    mediaCards.forEach(card => {
+        card.addEventListener('mouseenter', () => {
+            const video = card.querySelector('.hover-media');
+            if (video) video.play().catch(e => console.error("Play error:", e));
+        });
+
+        card.addEventListener('mouseleave', () => {
+            const video = card.querySelector('.hover-media');
+            if (video) {
+                video.pause();
+                // video.currentTime = 0; // Rewind to start optionally
+            }
+        });
+    });
 });
