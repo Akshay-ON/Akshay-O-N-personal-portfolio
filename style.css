@@ -47,6 +47,35 @@ body {
     position: relative;
 }
 
+/* Animated Image Background */
+.bg-animated-image {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-image: url('abstract-background-with-technological-elements.png');
+    background-size: 50% auto;
+    background-repeat: repeat;
+    z-index: -2;
+    opacity: 0.05;
+    /* Keeps the dark theme look clean */
+    mix-blend-mode: screen;
+    animation: bgSlideRight 60s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes bgSlideRight {
+    0% {
+        background-position: 0 0;
+    }
+
+    100% {
+        background-position: 100% 0;
+        /* Moves image to the right */
+    }
+}
+
 /* Background Gradients */
 .bg-glow {
     position: fixed;
