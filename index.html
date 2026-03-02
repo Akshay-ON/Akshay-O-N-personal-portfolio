@@ -15,14 +15,18 @@
         rel="stylesheet">
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
-    <link rel="stylesheet" href="style.css">
+    <!-- StyleSheet -->
+    <link rel="stylesheet" href="static/css/style.css">
+    <!-- Scripts -->
+    <script src="static/js/script.js"></script>
+
 </head>
 
 <body>
     <!-- Background Elements --->
     <!-- <div class="bg-animated-image"></div> -->
     <video autoplay muted loop class="bg-video">
-        <source src="Midnight_BG.mp4" type="video/mp4">
+        <source src="static/video/Midnight_BG.mp4" type="video/mp4">
     </video>
     <!-- <canvas id="network-canvas" class="network-canvas"></canvas> -->
 
@@ -90,8 +94,8 @@
                 <h2 class="section-title hidden">About <span>Me</span></h2>
                 <div class="about-grid hidden">
                     <div class="about-image-wrapper">
-                        <div class="about-image-placeholder">
-                            <i data-lucide="user" class="placeholder-icon"></i>
+                        <div class="about-image-placeholder" >
+                            <img class="about-user-image" src="static/img/dp_portfolio.jpg" alt="user-image" >
                         </div>
                         <div class="experience-badge">
                             <span class="exp-number">5+</span>
@@ -256,7 +260,7 @@
                     <!-- Project 3 -->
                     <div class="project-card glass hover-media-card" data-category="video">
                         <div class="project-img-wrapper">
-                            <video src="Dragon.mp4" class="hover-media" poster="Dragon%20thumbnail.png" muted loop
+                            <video src="static/video/Dragon.mp4" class="hover-media" poster="static/img/Dragon_thumbnail.png" muted loop
                                 playsinline
                                 style="width: 100%; height: 100%; object-fit: cover; display: block;"></video>
                             <div class="play-overlay">
@@ -288,7 +292,7 @@
                     <!-- PROJECT 5 -->
                     <!-- <div class="project-card glass hover-media-card" data-category="video">
                         <div class="project-img-wrapper">
-                            <video src="Dragon.mp4" class="hover-media" poster="Dragon%20thumbnail.png" muted loop
+                            <video src="static/video/Dragon.mp4" class="hover-media" poster="Dragon%20thumbnail.png" muted loop
                                 playsinline
                                 style="width: 100%; height: 100%; object-fit: cover; display: block;"></video>
                             <div class="play-overlay">
@@ -378,12 +382,12 @@
     <footer class="footer">
         <div class="container text-center">
             <a href="#hero" class="logo footer-logo">Akshay<span>.</span></a>
-            <p class="copyright">&copy; 2024 Akshay O N. All rights reserved.</p>
+            <p class="copyright">&copy; 2026 Akshay O N. All rights reserved.</p>
             <p class="footer-note">Designed & Built with passion.</p>
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    
 </body>
 
 </html>
