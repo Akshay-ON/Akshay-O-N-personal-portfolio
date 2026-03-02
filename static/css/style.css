@@ -755,8 +755,10 @@ ul {
     justify-content: center;
     color: white;
     z-index: 10;
-    pointer-events: none;
+    pointer-events: auto;
     transition: opacity 0.3s ease, transform 0.3s ease;
+    cursor: pointer;
+    user-select: none;
 }
 
 .play-overlay .lucide {
@@ -770,6 +772,21 @@ ul {
 .hover-media-card:hover .play-overlay {
     opacity: 0;
     transform: translate(-50%, -50%) scale(0.8);
+}
+
+/* Mobile: Keep play button visible */
+@media (hover: none) and (pointer: coarse) {
+    .play-overlay {
+        pointer-events: auto;
+        cursor: pointer;
+        opacity: 1 !important;
+        transform: translate(-50%, -50%) scale(1) !important;
+    }
+
+    .hover-media-card:hover .play-overlay {
+        opacity: 1 !important;
+        transform: translate(-50%, -50%) scale(1) !important;
+    }
 }
 
 .project-overlay {

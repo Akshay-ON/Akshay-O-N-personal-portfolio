@@ -189,21 +189,48 @@ document.addEventListener('DOMContentLoaded', () => {
     // Start typing effect
     setTimeout(typeEffect, 1000);
 
-    // Media Video Hover Effect
+    // Media Video Hover/Touch Effect (Desktop + Mobile)
     const mediaCards = document.querySelectorAll('.hover-media-card');
     mediaCards.forEach(card => {
+        const video = card.querySelector('.hover-media');
+        let isPlaying = false;
+
+        // Desktop: Hover to play
         card.addEventListener('mouseenter', () => {
-            const video = card.querySelector('.hover-media');
-            if (video) video.play().catch(e => console.error("Play error:", e));
+            if (video && !isPlaying) {
+                video.play().catch(e => console.error("Play error:", e));
+                isPlaying = true;
+            }
         });
 
         card.addEventListener('mouseleave', () => {
-            const video = card.querySelector('.hover-media');
-            if (video) {
+            if (video && isPlaying) {
                 video.pause();
-                // video.currentTime = 0; // Rewind to start optionally
+                video.currentTime = 0;
+                isPlaying = false;
             }
         });
+
+        // Mobile: Tap to play/pause
+        card.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            if (video) {
+                if (isPlaying) {
+                    video.pause();
+                    video.currentTime = 0;
+                } else {
+                    video.play().catch(e => console.error("Play error:", e));
+                }
+                isPlaying = !isPlaying;
+            }
+        });
+
+        // Pause when video ends
+        if (video) {
+            video.addEventListener('ended', () => {
+                isPlaying = false;
+            });
+        }
     });
 
     // Network Canvas Background
