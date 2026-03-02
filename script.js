@@ -236,13 +236,21 @@ document.addEventListener('DOMContentLoaded', () => {
         class Particle {
             constructor() {
                 this.x = Math.random() * width;
-                this.y = Math.random() * height;
+
+                // Spawn within top 25% or bottom 25%
+                this.isTop = Math.random() < 0.5;
+                if (this.isTop) {
+                    this.y = Math.random() * (height * 0.25);
+                } else {
+                    this.y = height * 0.75 + Math.random() * (height * 0.25);
+                }
+
                 this.size = Math.random() * 2 + 1.5;
                 this.baseX = this.x;
                 this.baseY = this.y;
                 this.density = (Math.random() * 30) + 1;
-                // Add slight continuous random movement
-                this.vx = (Math.random() - 0.5) * 0.4;
+                // Move towards right
+                this.vx = (Math.random() * 0.5) + 0.3; // Positive horizontal velocity
                 this.vy = (Math.random() - 0.5) * 0.4;
             }
 
@@ -255,13 +263,34 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             update() {
-                // Continuous slow movement
+                // Continuous slow movement towards right
                 this.baseX += this.vx;
                 this.baseY += this.vy;
 
-                // Bounce off edges logic for base position
-                if (this.baseX < 0 || this.baseX > width) this.vx *= -1;
-                if (this.baseY < 0 || this.baseY > height) this.vy *= -1;
+                // Occasional random jump towards the right and slightly vertical
+                if (Math.random() < 0.003) {
+                    this.baseX += Math.random() * 80 + 20; // Jump right
+                    this.baseY += (Math.random() - 0.5) * 40; // Slight vertical jitter
+                }
+
+                // Wrap around horizontally
+                if (this.baseX > width + 100) {
+                    this.baseX = -50;
+                    this.x = this.baseX;
+                }
+
+                // Keep particles within their designated top or bottom sections
+                if (this.isTop) {
+                    if (this.baseY < 0 || this.baseY > height * 0.25) this.vy *= -1;
+                    // Fix bounds if they jump out
+                    if (this.baseY < 0) this.baseY = 0;
+                    if (this.baseY > height * 0.25) this.baseY = height * 0.25;
+                } else {
+                    if (this.baseY < height * 0.75 || this.baseY > height) this.vy *= -1;
+                    // Fix bounds if they jump out
+                    if (this.baseY < height * 0.75) this.baseY = height * 0.75;
+                    if (this.baseY > height) this.baseY = height;
+                }
 
                 // Mouse interaction
                 if (mouse.x != null && mouse.y != null) {

@@ -61,6 +61,7 @@ body {
     opacity: 0.1;
     filter: invert(1);
     animation: bgSlideRight 60s linear infinite;
+    /* background-color: #63f1aa; */
     pointer-events: none;
 }
 
@@ -1038,3 +1039,12 @@ ul {
         padding: 2rem;
     }
 }
+.bg-video {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+    z-index: -1;
+    opacity: 22%;
+  }
