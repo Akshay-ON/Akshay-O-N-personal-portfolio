@@ -774,7 +774,14 @@ ul {
     transform: translate(-50%, -50%) scale(0.8);
 }
 
-/* Mobile: Keep play button visible */
+/* Hide play icon when video is playing */
+.hover-media-card.playing .play-overlay {
+    opacity: 0 !important;
+    transform: translate(-50%, -50%) scale(0.8) !important;
+    pointer-events: none;
+}
+
+/* Mobile: Keep play button visible when paused */
 @media (hover: none) and (pointer: coarse) {
     .play-overlay {
         pointer-events: auto;
@@ -783,6 +790,12 @@ ul {
         transform: translate(-50%, -50%) scale(1) !important;
     }
 
+    /* Show play icon on mobile only when paused */
+    .hover-media-card.playing .play-overlay {
+        opacity: 0 !important;
+        transform: translate(-50%, -50%) scale(0.8) !important;
+        pointer-events: none;
+    }
     .hover-media-card:hover .play-overlay {
         opacity: 1 !important;
         transform: translate(-50%, -50%) scale(1) !important;

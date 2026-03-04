@@ -193,13 +193,23 @@ document.addEventListener('DOMContentLoaded', () => {
     const mediaCards = document.querySelectorAll('.hover-media-card');
     mediaCards.forEach(card => {
         const video = card.querySelector('.hover-media');
+        const playOverlay = card.querySelector('.play-overlay');
         let isPlaying = false;
+
+        const updatePlayIcon = () => {
+            if (isPlaying) {
+                card.classList.add('playing');
+            } else {
+                card.classList.remove('playing');
+            }
+        };
 
         // Desktop: Hover to play
         card.addEventListener('mouseenter', () => {
             if (video && !isPlaying) {
                 video.play().catch(e => console.error("Play error:", e));
                 isPlaying = true;
+                updatePlayIcon();
             }
         });
 
@@ -208,6 +218,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 video.pause();
                 video.currentTime = 0;
                 isPlaying = false;
+                updatePlayIcon();
             }
         });
 
@@ -222,6 +233,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     video.play().catch(e => console.error("Play error:", e));
                 }
                 isPlaying = !isPlaying;
+                updatePlayIcon();
             }
         });
 
@@ -229,6 +241,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (video) {
             video.addEventListener('ended', () => {
                 isPlaying = false;
+                updatePlayIcon();
             });
         }
     });
