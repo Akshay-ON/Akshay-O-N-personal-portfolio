@@ -64,6 +64,16 @@ body {
     /* background-color: #63f1aa; */
     pointer-events: none;
 }
+.bg-image{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    z-index: -2;
+    opacity: 0.1;
+}
 
 .network-canvas {
     position: fixed;
@@ -598,7 +608,7 @@ ul {
 .skill-card p {
     color: var(--text-secondary);
     font-size: 0.9rem;
-    margin-bottom: 1.5rem;
+    /* margin-bottom: 1.5rem; */
 }
 
 .skill-bar {
@@ -607,6 +617,7 @@ ul {
     background: rgba(255, 255, 255, 0.1);
     border-radius: 3px;
     overflow: hidden;
+    margin-top: 1.5rem;
 }
 
 .skill-progress {
@@ -1080,8 +1091,75 @@ ul {
     position: fixed;
     right: 0;
     bottom: 0;
-    min-width: 100%;
-    min-height: 100%;
-    z-index: -1;
-    opacity: 22%;
+    /* min-width: 100%;
+    min-height: 100%; */
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    z-index: -2;
+    opacity: 15%;
   }
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+}
+
+.modal-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 90%;
+    max-height: 90%;
+    background: var(--bg-secondary);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+}
+
+.modal-image {
+    max-width: 100%;
+    max-height: 100%;
+    display: block;
+    margin: 0 auto;
+}
+
+.modal-video {
+    width: 100%;
+    height: auto;
+    max-height: calc(100vh - 100px);
+    object-fit: contain;
+    display: block;
+    margin: 0 auto;
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: var(--text-secondary);
+    font-size: 32px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: var(--transition);
+    z-index: 1001;
+    padding: 5px 10px;
+    border-radius: 5px;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.close:hover,
+.close:focus {
+    color: var(--text-primary);
+    transform: scale(1.1);
+}
