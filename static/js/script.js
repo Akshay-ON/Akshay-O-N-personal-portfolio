@@ -417,94 +417,41 @@ document.addEventListener('DOMContentLoaded', () => {
         animate();
     }
 
-    // Modal functionality
-    const modal = document.getElementById('brand-logo-modal');
-    const modalBtn = document.querySelector('[data-modal="brand-logo-modal"]');
-    const closeBtn = modal ? modal.querySelector('.close') : null;
+    // Generalized Modal Handler
+    const modalBtns = document.querySelectorAll('[data-modal]');
+    
+    modalBtns.forEach(btn => {
+        const targetModalId = btn.getAttribute('data-modal');
+        const targetModal = document.getElementById(targetModalId);
+        
+        if (targetModal) {
+            const closeBtn = targetModal.querySelector('.close');
+            const video = targetModal.querySelector('.modal-video');
 
-    if (modalBtn && modal) {
-        modalBtn.addEventListener('click', () => {
-            modal.style.display = 'block';
-        });
-
-        if (closeBtn) {
-            closeBtn.addEventListener('click', () => {
-                modal.style.display = 'none';
+            btn.addEventListener('click', () => {
+                targetModal.style.display = 'block';
+                if (video) {
+                    video.currentTime = 0; // Reset video to start
+                    video.play().catch(e => console.error("Play error:", e));
+                }
             });
-        }
 
-        window.addEventListener('click', (event) => {
-            if (event.target === modal) {
-                modal.style.display = 'none';
+            const closeModal = () => {
+                targetModal.style.display = 'none';
+                if (video) {
+                    video.pause();
+                }
+            };
+
+            if (closeBtn) {
+                closeBtn.addEventListener('click', closeModal);
             }
-        });
-    }
 
-    // Dragon Video Modal functionality
-    const dragonModal = document.getElementById('dragon-video-modal');
-    const dragonModalBtn = document.querySelector('[data-modal="dragon-video-modal"]');
-    const dragonCloseBtn = dragonModal ? dragonModal.querySelector('.close') : null;
-    const dragonVideo = dragonModal ? dragonModal.querySelector('.modal-video') : null;
-
-    if (dragonModalBtn && dragonModal) {
-        dragonModalBtn.addEventListener('click', () => {
-            dragonModal.style.display = 'block';
-            if (dragonVideo) {
-                dragonVideo.currentTime = 0; // Reset video to start
-                dragonVideo.play().catch(e => console.error("Play error:", e));
-            }
-        });
-
-        if (dragonCloseBtn) {
-            dragonCloseBtn.addEventListener('click', () => {
-                dragonModal.style.display = 'none';
-                if (dragonVideo) {
-                    dragonVideo.pause();
+            window.addEventListener('click', (event) => {
+                if (event.target === targetModal) {
+                    closeModal();
                 }
             });
         }
-
-        window.addEventListener('click', (event) => {
-            if (event.target === dragonModal) {
-                dragonModal.style.display = 'none';
-                if (dragonVideo) {
-                    dragonVideo.pause();
-                }
-            }
-        });
-    }
-
-    // Diginet Video Modal functionality
-    const diginetModal = document.getElementById('diginet-video-modal');
-    const diginetModalBtn = document.querySelector('[data-modal="diginet-video-modal"]');
-    const diginetCloseBtn = diginetModal ? diginetModal.querySelector('.close') : null;
-    const diginetVideo = diginetModal ? diginetModal.querySelector('.modal-video') : null;
-
-    if (diginetModalBtn && diginetModal) {
-        diginetModalBtn.addEventListener('click', () => {
-            diginetModal.style.display = 'block';
-            if (diginetVideo) {
-                diginetVideo.currentTime = 0; // Reset video to start
-                diginetVideo.play().catch(e => console.error("Play error:", e));
-            }
-        });
-
-        if (diginetCloseBtn) {
-            diginetCloseBtn.addEventListener('click', () => {
-                diginetModal.style.display = 'none';
-                if (diginetVideo) {
-                    diginetVideo.pause();
-                }
-            });
-        }
-
-        window.addEventListener('click', (event) => {
-            if (event.target === diginetModal) {
-                diginetModal.style.display = 'none';
-                if (diginetVideo) {
-                    diginetVideo.pause();
-                }
-            }
-        });
-    }
+    });
 });
